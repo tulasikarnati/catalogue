@@ -60,7 +60,7 @@ pipeline {
                         file: 'catalogue.zip',
                         type: 'zip']
                     ]
-     )
+                )
             }
         }
         stage('Deploy') {
