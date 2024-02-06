@@ -32,9 +32,13 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('Build') {
             steps {
-                echo 'Testing..'
+                sh """
+                    ls -la
+                    zip -r catalogue.zip ./* -x ".git" -x "*.zip"
+                    ls -ltr
+                """
             }
         }
         stage('Deploy') {
@@ -45,26 +49,12 @@ pipeline {
                 """
             }
         }
-        stage('check params') {
-            steps {
-                sh """
-                    echo "Hello ${params.PERSON}"
-
-                    echo "Biography: ${params.BIOGRAPHY}"
-
-                    echo "Toggle: ${params.TOGGLE}"
-
-                    echo "Choice: ${params.CHOICE}"
-
-                    echo "Password: ${params.PASSWORD}"
-                """
-            }
-        }
     }
     // post build
     post {
         always {
            echo "always run till pipeline runs " 
+           deleteDir()
         }
         failure {
             echo "pipeline is failed"
