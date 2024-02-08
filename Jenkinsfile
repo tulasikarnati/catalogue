@@ -33,17 +33,17 @@ pipeline {
                 }
             }
         }
-        // stage('Build') {
-        //     steps {
-        //         script {
-        //             sh """
-        //                 ls -la
-        //                 zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
-        //                 ls -ltr
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Build') {
+            steps {
+                script {
+                    sh """
+                        ls -la
+                        zip -r catalogue.zip ./* -x ".git" -x "*.zip"
+                        ls -ltr
+                    """
+                }
+            }
+        }
         // stage('Publish Artifact') {
         //     steps {
         //         nexusArtifactUploader(
