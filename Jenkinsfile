@@ -65,10 +65,14 @@ pipeline {
         }
 
         stage ('Invoke_pipeline') {
-            steps {
-                build job: "catalogue-deploy", parameters: [
-                string(name: 'version', value: "${packageVersion}")
-                ]
+             steps {
+                script {
+                        def params = [
+                            string(name: 'version', value: "$packageVersion"),
+                            string(name: 'environment', value: "dev")
+                        ]
+                        build job: "catalogue-deploy", wait: true, parameters: params
+                    }
             }
         }
         
