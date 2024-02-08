@@ -64,7 +64,7 @@ pipeline {
             }
         }
 
-        stage ('Invoke_pipeline') {
+        stage('Invoke_pipeline') {
              steps {
                 script {
                         def params = [
