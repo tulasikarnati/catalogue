@@ -71,7 +71,7 @@ pipeline {
                         string(name: 'version', value: ""),
                         string(name: 'environment', value: "")
                     ]
-                    build job: "catalogue-deploy", wait: false, parameters: params
+                    build job: "catalogue-deploy", wait: true, parameters: params
                 }
             }
         }
