@@ -6,7 +6,7 @@ pipeline {
     }
     environment {
         packageVersion = ''
-        nexusURL = '44.200.36.158:8081'
+        nexusURL = '172.31.0.208:8081'
     }
     options {
         ansiColor('xterm')
