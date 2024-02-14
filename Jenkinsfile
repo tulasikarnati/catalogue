@@ -36,10 +36,12 @@ pipeline {
                 }
             }
         }
-        stage('Unit Tests') {
+        stage('Unit Tests and java version') {
             steps {
                 sh """
                     echo "unit tests will run here"
+                    echo pwd
+                    java --version
                 """
             }
         }
