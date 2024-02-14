@@ -13,6 +13,9 @@ pipeline {
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds() 
     }
+    parameters {
+        booleanParam(name: 'Deploy', defaultValue: false, description: 'Toggle this value')
+    }
     // build
     stages {
         stage('Get the Version') {
@@ -31,6 +34,20 @@ pipeline {
                         npm install
                     """
                 }
+            }
+        }
+        stage('Unit Tests') {
+            steps {
+                sh """
+                    echo "unit tests will run here"
+                """
+            }
+        }
+        stage ('Sonar scan') {
+            steps {
+                sh """
+                    sonar-scanner
+                """
             }
         }
         stage('Build') {
@@ -64,7 +81,12 @@ pipeline {
             }
         }
 
-        stage('Invoke_pipeline') {
+        stage('Deploy') {
+             when {
+                    expression {
+                        params.Deploy
+                    }
+                }
             steps {
                 script {
                     def params = [
@@ -75,16 +97,7 @@ pipeline {
                 }
             }
         }
-        
-        stage('Deploy') {
-            steps {
-                sh """
-                    echo "hello shellscript"
-                    #sleep 10
-                """
-            }
-        }
-    }
+}
     // post build
     post {
         always {
