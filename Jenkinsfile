@@ -42,4 +42,3 @@ pipeline {
             echo "pipeline is success"
         }
     }
-}
