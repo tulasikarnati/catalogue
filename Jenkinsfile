@@ -6,3 +6,5 @@ def configMap = {
     application: "nodejsVM",
     component: "catalogue"
 }
+
+env
