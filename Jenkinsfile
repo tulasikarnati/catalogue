@@ -7,4 +7,8 @@ def configMap = [
     component: "catalogue"
 ]
 
-sh 'printenv'
+if(! env.BRANCH_NAME == "main") {
+    pipelineDecission.decidepipeline(configMap)
+} else {
+    echo "This is production, please go with CR process"
+}
