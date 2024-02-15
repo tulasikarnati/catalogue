@@ -27,7 +27,78 @@ pipeline {
                 }
             }
         }
-    }
+        // stage('Install dependencies') {
+        //     steps {
+        //         script {
+        //             sh """
+        //                 npm install
+        //             """
+        //         }
+        //     }
+        // }
+        // stage('Unit Tests and java version') {
+        //     steps {
+        //         sh """
+        //             echo "unit tests will run here"
+        //             echo pwd
+        //             java --version
+        //         """
+        //     }
+        // }
+        // stage ('Sonar scan') {
+        //     steps {
+        //         sh """
+        //             sonar-scanner
+        //         """
+        //     }
+        // }
+        // stage('Build') {
+        //     steps {
+        //         script {
+        //             sh """
+        //                 ls -la
+        //                 zip -q -r catalogue.zip ./* -x ".git" -x "*.zip"
+        //                 ls -ltr
+        //             """
+        //         }
+        //     }
+        // }
+        // stage('Publish Artifact') {
+        //     steps {
+        //         nexusArtifactUploader(
+        //             nexusVersion: 'nexus3',
+        //             protocol: 'http',
+        //             nexusUrl: "${nexusURL}",
+        //             groupId: 'com.roboshop',
+        //             version: "${packageVersion}",
+        //             repository: 'catalogue',
+        //             credentialsId: 'nexus-auth',
+        //             artifacts: [
+        //                 [artifactId: 'catalogue',
+        //                 classifier: '',
+        //                 file: 'catalogue.zip',
+        //                 type: 'zip']
+        //             ]
+        //         )
+        //     }
+        // }
+
+        // stage('Deploy') {
+        //      when {
+        //             expression {
+        //                 params.Deploy
+        //             }
+        //         }
+        //     steps {
+        //         script {
+        //             def params = [
+        //                 string(name: "version", value: "${packageVersion}"),
+        //                 string(name: "environment", value: "dev")
+        //             ]
+        //             build job: "catalogue-deploy", wait: true, parameters: params
+        //         }
+        //     }
+        // }
 }
     // post build
     post {
@@ -42,3 +113,4 @@ pipeline {
             echo "pipeline is success"
         }
     }
+}
