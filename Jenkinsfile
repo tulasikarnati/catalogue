@@ -1,2 +1,2 @@
 #!groovy
-@Library('myOneLib') _
+@Library('roboshop-shared-library') _
