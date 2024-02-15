@@ -8,7 +8,7 @@ def configMap = [
 ]
 
 if(! env.BRANCH_NAME == "main") {
-    sh """ echo $BRANCH_NAME """
+    sh """ echo ${env.BRANCH_NAME} """
     pipelineDecission.decidepipeline(configMap)
 } else {
     echo "This is production, please go with CR process"
